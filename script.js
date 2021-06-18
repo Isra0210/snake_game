@@ -22,7 +22,7 @@ function createBG() {
 
 function createSnake() {
   for (i = 0; i < snake.length; i++) {
-    context.fillStyle = "grey";
+    context.fillStyle = "#1c1c70";
     context.fillRect(snake[i].x, snake[i].y, box, box);
   }
 }
@@ -41,25 +41,18 @@ function update(event) {
   if (event.keyCode == 40 && direction != "up") direction = "down";
 }
 
+function loser(){
+  clearInterval(game);
+  alert('GAME OVER! PONTUAÇÃO -> ' + count);
+}
+
 function startGame() {
 
-  if (snake[0].x > 15 * box && direction == "right") {
-    clearInterval(game);
-    alert('Colisão a direita!');
-  }
-  if (snake[0].x < 0 && direction == "left") {
-    clearInterval(game);
-    alert('Colisão a esquerda!');
-  }
-  if (snake[0].y > 15 * box && direction == "down") {
-    clearInterval(game);
-    alert('Colisão inferior!');
-  }
-  if (snake[0].y < 0 && direction == "up") {
-    clearInterval(game);
-    alert('Colisão superior!');
-  }
-
+  if (snake[0].x > 15 * box && direction == "right") loser();
+  if (snake[0].x < 0 && direction == "left") loser();
+  if (snake[0].y > 15 * box && direction == "down") loser();
+  if (snake[0].y < 0 && direction == "up") loser();
+  
   for (i = 1; i < snake.length; i++) {
     if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
       clearInterval(game);

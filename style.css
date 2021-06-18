@@ -10,3 +10,27 @@ body {
     color: white;
     background-color: black;
 }
+
+p {
+    font-size: 20px;
+    color: black;
+}
+
+
+span {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 64vh;
+    background-color: white;
+    border: solid;
+    border-color: rgb(28, 28, 112);
+}
