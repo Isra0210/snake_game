@@ -11,6 +11,7 @@ let food = {
   x: Math.floor(Math.random() * 15 + 1) * box,
   y: Math.floor(Math.random() * 15 + 1) * box,
 }
+var count = 0;
 
 
 function createBG() {
@@ -42,16 +43,28 @@ function update(event) {
 
 function startGame() {
 
-  if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-  if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
-  if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-  if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+  if (snake[0].x > 15 * box && direction == "right") {
+    clearInterval(game);
+    alert('Colisão a direita!');
+  }
+  if (snake[0].x < 0 && direction == "left") {
+    clearInterval(game);
+    alert('Colisão a esquerda!');
+  }
+  if (snake[0].y > 15 * box && direction == "down") {
+    clearInterval(game);
+    alert('Colisão inferior!');
+  }
+  if (snake[0].y < 0 && direction == "up") {
+    clearInterval(game);
+    alert('Colisão superior!');
+  }
 
-  for(i = 1; i < snake.length; i++){
-    if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
+  for (i = 1; i < snake.length; i++) {
+    if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
       clearInterval(game);
       alert('Game Over! :(');
-    } 
+    }
   }
 
   createBG();
@@ -69,6 +82,8 @@ function startGame() {
   if (snakeX != food.x || snakeY != food.y) {
     snake.pop();
   } else {
+    count++;
+    document.querySelector('span').innerHTML = count;
     food.x = Math.floor(Math.random() * 15 + 1) * box;
     food.y = Math.floor(Math.random() * 15 + 1) * box;
   }
